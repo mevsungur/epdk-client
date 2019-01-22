@@ -1,0 +1,56 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://genel.service.ws.epvys.g222.tubitak.gov.tr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://genel.service.ws.epvys.g222.tubitak.gov.tr/">
+   <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="WSO2ServiceThrottlingPolicy">
+      <wsp:ExactlyOne>
+         <wsp:All/>
+      </wsp:ExactlyOne>
+   </wsp:Policy>
+   <wsdl:types>
+      <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified">
+         <xsd:import namespace="http://genel.service.ws.epvys.g222.tubitak.gov.tr/" schemaLocation="bildirimPetrol8FirmaBulten?xsd=xsd0.xsd"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="genelSorgu">
+      <wsdl:part name="parameters" element="tns:genelSorgu"/>
+   </wsdl:message>
+   <wsdl:message name="genelSorguResponse">
+      <wsdl:part name="parameters" element="tns:genelSorguResponse"/>
+   </wsdl:message>
+   <wsdl:portType xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" name="bildirimPetrol8FirmaBultenPortType" wsp:PolicyURIs="#WSO2ServiceThrottlingPolicy">
+      <wsdl:operation name="genelSorgu">
+         <wsdl:input message="tns:genelSorgu" wsaw:Action="genelSorgu"/>
+         <wsdl:output message="tns:genelSorguResponse" wsaw:Action="http://genel.service.ws.epvys.g222.tubitak.gov.tr/DBService/genelSorguResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="bildirimPetrol8FirmaBultenSoap11Binding" type="tns:bildirimPetrol8FirmaBultenPortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="genelSorgu">
+         <soap:operation soapAction="genelSorgu" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="bildirimPetrol8FirmaBultenSoap12Binding" type="tns:bildirimPetrol8FirmaBultenPortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="genelSorgu">
+         <soap12:operation soapAction="genelSorgu" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="bildirimPetrol8FirmaBulten">
+      <wsdl:port name="bildirimPetrol8FirmaBultenHttpSoap11Endpoint" binding="tns:bildirimPetrol8FirmaBultenSoap11Binding">
+         <soap:address location="http://lisansws.epdk.org.tr/services/bildirimPetrol8FirmaBulten.bildirimPetrol8FirmaBultenHttpSoap11Endpoint"/>
+      </wsdl:port>
+      <wsdl:port name="bildirimPetrol8FirmaBultenHttpSoap12Endpoint" binding="tns:bildirimPetrol8FirmaBultenSoap12Binding">
+         <soap12:address location="http://lisansws.epdk.org.tr/services/bildirimPetrol8FirmaBulten.bildirimPetrol8FirmaBultenHttpSoap12Endpoint"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
